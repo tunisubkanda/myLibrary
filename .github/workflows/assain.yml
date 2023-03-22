@@ -1,0 +1,26 @@
+name: Assignの追加
+
+on: 
+  pull_request:
+    types: [ opened, unassigned ]
+
+env:
+  GITHUB_TOKEN: ${{ secrets.USAGE_ISSUE }}
+
+jobs:
+  assignees:
+    if: ${{ github.actor != 'dependabot[bot]' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/github-script@v4.1.0
+        if: github.event_name == 'pull_request'
+        with:
+          github-token: ${{ env.GITHUB_TOKEN }}
+          script: |
+            github.issues.addAssignees({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              assignees: `${{ github.actor }}`
+            });
