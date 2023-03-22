@@ -1,0 +1,113 @@
+---
+# https://pystyle.info/apps/clang-format-editor/
+# 引数は左揃え
+AlignAfterOpenBracket: DontAlign
+
+# 連続する行の = の位置を揃える
+AlignConsecutiveAssignments: false
+
+# 連続する行の宣言の位置を揃える
+AlignConsecutiveDeclarations: false
+
+# マクロの位置を揃える
+#AlignConsecutiveMacros: true
+
+# 二項演算子と三項演算子を揃える
+AlignOperands: true
+
+# 連続する行のコメントの位置揃える
+AlignTrailingComments: false
+
+# 短い関数を単一行にしない
+AllowShortFunctionsOnASingleLine: None
+
+BinPackArguments: true
+
+# true なら独立行にする
+BraceWrapping:
+    AfterClass: false
+    AfterControlStatement: false  # 制御文の後//制御文のキーワード(for/if/while等)と開始括弧の間のスペースを削除
+    AfterEnum: false          # enumの後 (単一行にしないため)
+    AfterFunction: false      # 関数の後
+    AfterStruct: false        # structの後 (単一行にしないため)
+    AfterUnion: false         # unionの後 (単一行にしないため)
+    AfterExternBlock: false  # externの後
+    BeforeCatch: false       # catchの前
+    AfterNamespace: false
+    BeforeElse: false        # elseの前
+    IndentBraces: false
+#    BeforeLambdaBody: true
+
+CommentPragmas: '#pragma omp section'
+
+# { } の位置をカスタム設定する
+BreakBeforeBraces: Custom
+
+# 1行の文字数を制限する (0で無制限)
+ColumnLimit: 0
+
+# includeを名前順にソートする
+IncludeBlocks: Preserve
+
+# swicth分のcaseにインデントを設定する
+IndentCaseLabels: true
+
+# インデントは4スペース
+IndentWidth: 4
+
+# ポインターの * & は変数宣言の左に記述する
+PointerAlignment: Left
+#ReferenceAlignment: Pointer
+
+# キャストの後ろにスペースを入れない
+SpaceAfterCStyleCast: false
+
+# 制御文の ( の前にスペースを入れる
+SpaceBeforeParens: Never
+
+# コメントの前に4スペース入れる
+SpacesBeforeTrailingComments: 2
+
+AccessModifierOffset: -4
+
+# 短いブロックを1行にまとめるかどうかを指定
+AllowShortBlocksOnASingleLine: true
+
+AllowShortFunctionsOnASingleLine: true
+
+AllowShortIfStatementsOnASingleLine: true # if文の改行
+
+AllowShortCaseLabelsOnASingleLine: true
+AllowShortLoopsOnASingleLine: true
+
+BreakBeforeTernaryOperators: false #三項演算子
+
+KeepEmptyLinesAtTheStartOfBlocks: false
+
+SpaceInEmptyParentheses: false # // 空白の丸括弧の間のスペースを削除する。
+
+Standard: Auto
+
+MaxEmptyLinesToKeep: 1
+
+# ContinuationIndentWidth: 2
+
+# AllowAllArgumentsOnNextLine: true
+# AllowAllParametersOfDeclarationOnNextLine: true
+# BinPackParameters: false
+# EmptyLineAfterAccessModifier: Leave
+# IndentGotoLabels: false
+# Language: Cpp
+# SpaceAfterLogicalNot: false
+
+##使えない
+##最新verだと使えるかも
+# BraceWrapping:
+#   AfterCaseLabel: false
+#   BeforeWhile: false
+# LambdaBodyIndentation: OuterScope
+# SpaceBeforeInheritanceColon: false # class Foo: Bar {} //コロンの前のスペースを削除
+# AfterFunctionDeclarationName: false # void f(); //関数宣言と開始括弧の間のスペースを削除
+# AfterFunctionDefinitionName: false # void f() {}; //関数定義と開始括弧の間のスペースを削除
+# SpaceBeforeSquareBrackets: false # int a[5]; // 角括弧の前のスペースを削除する。
+# SpaceInEmptyBlock: false # void f() {} // 空白の波括弧の間のスペースを削除する。
