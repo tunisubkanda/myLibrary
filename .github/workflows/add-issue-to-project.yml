@@ -1,0 +1,16 @@
+name: IssueをProjectsに登録
+on:
+  issues:
+    types:
+      - opened
+env:
+  GITHUB_TOKEN: ${{ secrets.USAGE_ISSUE }}
+jobs:
+  add-issue-to-project:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/add-to-project@v0.4.0
+      id: add-issue-to-project
+      with:
+        project-url: https://github.com/orgs/kanda-prg/projects/1
+        github-token: ${{ env.GITHUB_TOKEN }}

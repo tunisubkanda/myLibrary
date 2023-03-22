@@ -1,0 +1,19 @@
+name: Auto Assign2
+
+on:
+  issue_comment:
+  issues:
+    types:
+      - closed
+      
+env:
+  GITHUB_TOKEN: ${{ secrets.USAGE_ISSUE }}
+
+jobs:
+  add_assignees:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions-ecosystem/action-add-assignees@v1
+        with:
+          github_token: ${{ env.GITHUB_TOKEN }}
+          assignees: ${{ github.actor }}

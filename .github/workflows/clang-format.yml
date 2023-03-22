@@ -1,0 +1,40 @@
+name: Automatic formatting
+
+on:
+  pull_request:
+    branches:
+      - main
+
+env:
+  CPP: 'cpp'
+  HPP: 'hpp'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Test changed-files
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v35
+        
+      - name: Code formatting
+        run: |
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            if [ ${file##*.} == ${{env.CPP}} ]; then
+              sed -i 's@#pragma omp@0;//#pragma omp@g' $file
+              clang-format -i $file
+              sed -i 's@0; *// *#pragma omp@#pragma omp@g' $file
+            elif [ ${file##*.} == ${{env.HPP}} ]; then
+              clang-format -i $file
+            fi
+          done
+        
+      - name: Auto Commit
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Apply Code Formatter Change
